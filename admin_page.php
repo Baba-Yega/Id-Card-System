@@ -253,7 +253,7 @@ else{
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="inputCity">Student</label>
+        <label for="inputCity">Entry Type</label>
         <input type="text" name="student" class="form-control">
       </div>
       <div class="form-group col-md-4">

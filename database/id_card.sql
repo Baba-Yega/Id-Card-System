@@ -32,7 +32,7 @@ CREATE TABLE `admin` (
   `password` varchar(50) DEFAULT NULL,
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-INSERT INTO `cards` (`sno`, `email`, `password`) VALUES
+INSERT INTO `admin` (`sno`, `email`, `password`) VALUES
 (01, 'admin@gmail.com', 'lewandoski')
 
 

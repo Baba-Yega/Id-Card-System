@@ -4,11 +4,13 @@ Computerized Students Identity Card System
 ## Images
 <!--Images-->
 Id Page
-![Picture 1](assets/images/Screenshot%20(147).png)
+![Picture 1](assets/images/Screenshot%20(246).png)
 
-![Picture 2](assets/images/Screenshot%20(154).png)
+![Picture 2](assets/images/Screenshot%20(247).png)
 
-![Picture 3](assets/images/Screenshot%20(155).png)
+![Picture 3](assets/images/Screenshot%20(248).png)
+
+![Picture 3](assets/images/Screenshot%20(251).png)
 
 Admin Page
 ![Picture 3](assets/images/Screenshot%20(153).png)

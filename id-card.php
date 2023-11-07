@@ -12,87 +12,85 @@
  
  
              if(mysqli_num_rows($result)>0){
-             $html="<div class='card' style='width:350px; padding:0;' >";
-     
-               $html.="";
-                         while($row=mysqli_fetch_assoc($result)){
-                             
-                            $name = $row["name"];
-                            $level = $row['level'];
-                            $mat_no = $row['mat_no'];
-                            $dept = $row['dept'];
-                            $email = $row['email'];
-                            $exp_date = $row['exp_date'];
-                            $phone = $row['phone'];
-                            $student =$row['student'];
-                            $dob = $row['dob'];
-                            $image = $row['image'];
-                            $date = date('M d, Y', strtotime($row['date']));
-                          
-                             
-                             $html.="
-                                        <!-- second id card  -->
-                                        <div class='container' style='text-align:left; border:2px dotted black;'>
-                                              <div class='header'>
-                                                
-                                              </div>
-                                  
-                                              <div class='container-2'>
-                                                  <div class='box-1'>
-                                                  <img src='$image'/>
-                                                  </div>
-                                                  <div class='box-2'>
-                                                      <h2>Name: $name</h2>
-                                                      <p style='font-size: 14px;'>Student ID Card</p>
-                                                  </div>
-                                                  <div class='box-3'>
-                                                      <img src='assets/images/unical-logo.jpg' alt=''>                                                      
-                                                  </div>
-                                              </div>
-                                  
-                                              <div class='container-3'>
-                                                  <div class='info-1'>
-                                                      <div class='id'>
-                                                          <h4>Matric No</h4>
-                                                          <p>$mat_no</p>
-                                                      </div>
-                                  
-                                                      <div class='dob'>
-                                                          <h4>Phone</h4>
-                                                          <p>$phone</p>
-                                                      </div>
-                                  
-                                                  </div>
-                                                  <div class='info-2'>
-                                                      <div class='join-date'>
-                                                          <h4>Joined Date</h4>
-                                                          <p>$date</p>
-                                                      </div>
-                                                      <div class='expire-date'>
-                                                          <h4>Expire Date</h4>
-                                                          <p>$exp_date</p>
-                                                      </div>
-                                                  </div>
-                                                  <div class='info-3'>
-                                                      <div class='email'>
-                                                          <h4>Department</h4>
-                                                          <p>$dept</p>
-                                                      </div>
-                                                      
-                                                  </div>
-                                                  <div class='info-4'>
-                                                      <div class='sign'>
-                                                          <br>
-                                                          <p style='font-size:12px;'>Your Signature</p>
-                                                      </div>
-                                                  </div>
-                                                  <!-- id card end -->
-                                        ";
-                                        
-                           
-                         }
-     
+                $html .= "<div class='card' style='width:350px; padding:0;'>";
 
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $name = $row["name"];
+                    $level = $row['level'];
+                    $mat_no = $row['mat_no'];
+                    $dept = $row['dept'];
+                    $email = $row['email'];
+                    $exp_date = $row['exp_date'];
+                    $phone = $row['phone'];
+                    $student = $row['student'];
+                    $dob = $row['dob'];
+                    $image = $row['image'];
+                    $date = date('M d, Y', strtotime($row['date']));
+                
+                    // Add the front of the ID card
+                    $html .= "
+                        <!-- Front of the ID card -->
+                        <div class='container' style='text-align:left; border:2px dotted black;'>
+                        <div class=''><p class='pt-2 h4 text-center'>University Of Calabar</p>  </div>
+                            <div class='header text-center'> </div>
+                            <div class='container-2'>
+                                <div class='box-1'>
+                                    <img src='$image' />
+                                </div>
+                                <div class='box-2'>
+                                    <h4>Student ID Card</h4>
+                                    <h6>Name: $name</h6>                                    
+                                </div>
+                                <div class='box-3'>
+                                    <img src='assets/images/unical-logo.jpg' alt=''>
+                                </div>
+                            </div>
+                            <div class='container-3 pt-2'>
+                                <div class='info-1'>
+                                    <div class='id'>
+                                        <h4>Matric No</h4>
+                                        <p>$mat_no</p>
+                                    </div>
+                                    <div class='dob'>
+                                        <h4>Phone</h4>
+                                        <p>$phone</p>
+                                    </div>
+                                </div>
+                                <div class='info-2'>
+                                    <div class='join-date'>
+                                        <h4>Admission Date</h4>
+                                        <p>$date</p>
+                                    </div>
+                                    <div class='expire-date'>
+                                        <h4> Expire Date</h4>
+                                        <p>$exp_date</p>
+                                    </div>
+                                </div>
+                                <div class='info-3 pl-3'>
+                                    <div class='email'>
+                                        <h4> Department</h4>
+                                        <p>$dept</p>
+                                    </div>
+                                </div>
+                                <div class='info-4'>
+                                    <div class='sign'>
+                                        <br>
+                                        <p style='font-size:12px;'>Your Signature</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>"; // End of the front of the ID card
+                
+                    // Add the back of the ID card (you can customize the back image source)
+                    $html .= "
+                        <!-- Back of the ID card -->
+                        <div class='container pt-1 h-100' style='text-align:center; border:2px dotted black;'>
+                            <img src='assets/images/16992390_748099838682446_315523580157973998_o.jpg' class='img-fluid' alt='Back of ID Card' />
+                        </div>"; // End of the back of the ID card
+                }
+                
+                $html .= "</div>"; // Close the card container
+                
              } else {
                 // User ID not found, display an error message
                 $html = "<div class='error-message'>Student with the matric number Not Found</div>";
@@ -160,7 +158,7 @@ hr.new2 {
 .header {
     /* border: 2px solid black; */
     width: 73vh;
-    height: 15vh;
+    height: 10vh;
     margin: 20px auto;
     background-color: white;
     /* box-shadow: 0 1px 10px rgb(146 161 176 / 50%); */
