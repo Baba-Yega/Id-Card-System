@@ -12,26 +12,25 @@
  
  
              if(mysqli_num_rows($result)>0){
-                $html .= "<div class='card' style='width:350px; padding:0;'>";
+                $html .= "<div class='card' style='width:500px; padding:0;'>";
 
                 while ($row = mysqli_fetch_assoc($result)) {
                     $name = $row["name"];
                     $level = $row['level'];
                     $mat_no = $row['mat_no'];
                     $dept = $row['dept'];
-                    $email = $row['email'];
-                    $exp_date = $row['exp_date'];
+                    $email = $row['email'];                    
                     $phone = $row['phone'];
                     $student = $row['student'];
                     $dob = $row['dob'];
-                    $image = $row['image'];
-                    $date = date('M d, Y', strtotime($row['date']));
+                    $image = $row['image'];                    
+                    $level =$row["level"];
                 
                     // Add the front of the ID card
                     $html .= "
                         <!-- Front of the ID card -->
                         <div class='container' style='text-align:left; border:2px dotted black;'>
-                        <div class=''><p class='pt-2 h4 text-center'>University Of Calabar</p>  </div>
+                        <div class=''><p class=' h4 text-center'>University Of Calabar</p>  </div>
                             <div class='header text-center'> </div>
                             <div class='container-2'>
                                 <div class='box-1'>
@@ -58,12 +57,8 @@
                                 </div>
                                 <div class='info-2'>
                                     <div class='join-date'>
-                                        <h4>Admission Date</h4>
-                                        <p>$date</p>
-                                    </div>
-                                    <div class='expire-date'>
-                                        <h4> Expire Date</h4>
-                                        <p>$exp_date</p>
+                                        <h4>Level</h4>
+                                        <p>$level</p>
                                     </div>
                                 </div>
                                 <div class='info-3 pl-3'>
@@ -72,12 +67,12 @@
                                         <p>$dept</p>
                                     </div>
                                 </div>
-                                <div class='info-4'>
+                                <div class='info-4 pb-2'>
                                     <div class='sign'>
-                                        <br>
+                                        <img src='sign.png' alt='Italian Trulli' class='h-75 w-75'>
                                         <p style='font-size:12px;'>Your Signature</p>
                                     </div>
-                                </div>
+                                </div class='pb-2'>
                             </div>
                         </div>"; // End of the front of the ID card
                 
@@ -107,6 +102,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="bootstrap.min.css"> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="icon" type="image/png" href="images/favicon.png"/>
     <link rel="stylesheet" href="css/dashboard.css">
@@ -358,11 +354,12 @@ hr.new2 {
     }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css">
   </head>
   <body>
 
  <!-- Navigation bar start  -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#"><img src="assets/images/codingcush-logo.png" alt=""></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -371,16 +368,11 @@ hr.new2 {
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="index.php">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="admin_login.php">Admin login</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+                        <a class="nav-link" href="logout.php">logout</a>
+                    </li>
   </div>
 </nav>
 <!-- Navigation bar end  -->

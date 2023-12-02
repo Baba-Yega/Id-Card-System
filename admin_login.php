@@ -4,18 +4,13 @@
 
         session_start();
 
-// Check if the user is already logged in
-if (isset($_SESSION['user_id'])) {
-    header("Location: admin_page.php");
-    exit();
-}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     // Retrieve user data from the database based on the provided email
-    $sql = "SELECT id, email, password FROM users WHERE email = ?";
+    $sql = "SELECT id, email, password FROM admin WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -23,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = $result->fetch_assoc();
 
     // Verify the password
-    if ($user && password_verify($password, $user['password'])) {
+    if ($user && $password === $user['password']) {
         // Successful login
         session_start();
         $_SESSION['user_id'] = $user['id'];
@@ -58,6 +53,7 @@ $conn->close();
        <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="bootstrap.min.css">
 
 
 
@@ -312,16 +308,8 @@ hr.new2 {
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="admin_login.php">Admin Login</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="admin_page.php">Admin page</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
   </div>
 </nav>
 <!-- Navigation bar end  -->
@@ -333,7 +321,7 @@ hr.new2 {
     <div class="card jumbotron">
       <div class="card-body">
         <h3>Admin login</h3>
-      <form action="/action_page.php">
+      <form action="" method="POST">
   <div class="mb-3 mt-3">
     <label for="email" class="form-label">Email:</label>
     <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
